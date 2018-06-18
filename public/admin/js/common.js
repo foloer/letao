@@ -1,3 +1,16 @@
+//如果不是login页面,就需要发送ajax请求
+if(location.href.indexOf("login.html")===-1){
+  $.ajax({
+    type:'get',
+    url:"/employee/checkRootLogin",
+    success:function(info){
+  if(info.error){
+  location.href="login.html";
+  }
+    }
+  })
+}
+
 
 //发送ajax请求产生进度条
 $(document).ajaxStart(function(){
@@ -19,5 +32,19 @@ $(".icon_menu").on("click",function(){
   $(".lt_aside").toggleClass("now");
   $(".lt_main").toggleClass("now");
 })
-//退除功能
+//退出功能
+$(".icon_logout").on("click",function(){
+  $("#logoutModal").modal('show');
+})
+$(".btn_logout").on("click",function(){
+  $.ajax({
+    type:'get',
+    url:"/employee/employeeLogout",
+    success:function(info){
+if(info.success){
+  location.href="login.html";
+}
+    }
+  })
+})
 
