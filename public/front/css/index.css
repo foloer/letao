@@ -5,25 +5,3 @@
 float: left;
 width: 33.33%;
 }
-.product{ 
-  padding: 10px;
-  
-}
-.product a {
-  float: left;
-  width: 48%;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom:10px; 
- background-color:  #fff;
- text-align: center;
-}
-.product a:nth-child(even){
-  margin-left: 4%;
-}
-.product .price{
-  color: red;
-}
-.product .oldPrice{
-  text-decoration: line-through;
-}

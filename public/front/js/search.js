@@ -54,6 +54,6 @@ $(function () {
       history.unshift(txt);
       localStorage.setItem("lt_history", JSON.stringify(history));
       render();
-      location.herf="searchList.html?key="+txt;
+      location.href="searchList.html?key="+txt;
     })
   })

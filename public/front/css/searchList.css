@@ -1,0 +1,35 @@
+.sort{
+ 
+  height: 30px;
+  padding:0 10px;
+  background-color: #eee;
+}
+.sort li{
+  float: left;
+  width: 25%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  text-align: center;
+}
+.sort li.now a{
+  color: darkorange;
+}
+.sort a{
+  color: #666;
+}
+.loading{
+width: 40px;
+height: 40px;
+border: 3px solid #369;
+margin: 100px auto;
+animation: zhuan 1s infinite linear;
+}
+@keyframes zhuan{
+  from{
+transform: rotate(0deg)
+  }
+ to{
+    transform: rotate(360deg)
+      }
+}
