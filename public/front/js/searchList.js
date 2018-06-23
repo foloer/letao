@@ -1,25 +1,38 @@
 
 $(function () {
-  function getSearch() {
-    var search = location.search;
-    // 转回中文
-    search = decodeURI(search);
+  var page = 1;
+  var pageSize = 4;
+  var key = getSearch().key;
+  $(".lt_search input").val(key);
+  mui.init({
+    pullRefresh: {
+      container: ".mui-scroll-wrapper",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+      down: {
+        auto: true,//可选,默认false.首次加载自动上拉刷新一次
+        callback: function () {
+          page = 1;
+          render(function (info) {
+            $(".product").html(template("tpl", info));
+            mui(".mui-scroll-wrapper").pullRefresh().endPulldownToRefresh();
+            mui(".mui-scroll-wrapper").pullRefresh().refresh(true);
+          });
+        } //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+      },
+      up: {
+        callback: function () {
+          page++;
+          render(function (info) {
+            $(".product").append(template("tpl", info));
+            mui(".mui-scroll-wrapper").pullRefresh().endPullupToRefresh(info.data.length === 0);
 
-    search = search.slice(1);
-    // console.log(search)
-    var arr = search.split("&");
-    //  console.log(arr)
+          });
+        }
+      }
+    }
+  });
 
-    var obj = {};
-    arr.forEach(function (e, i) {
-      var k = e.split("=")[0];
-      var v = e.split("=")[1];
-      obj[k] = v;
-    })
-    return obj;
-  }
-  function render() {
-    $(".product").html('<div class="loading"></div>');
+  function render(callback) {
+    // $(".product").html('<div class="loading"></div>');
     var obj = {
       proName: key,
       page: page,
@@ -30,33 +43,27 @@ $(function () {
       var type = $select.data("type");
       var value = $select.find("span").hasClass("fa-angle-down") ? 2 : 1;
       obj[type] = value;
-    } else {
-      console.log("不需要");
     }
+
     $.ajax({
       type: "get",
       url: "/product/queryProduct",
       data: obj,
       success: function (info) {
-        setTimeout(function(){
-          $(".product").html(template("tpl", info));
-        },1000)
+        console.log(info);
+        setTimeout(function () {
+          callback(info);
+        }, 1000)
       }
     })
   }
-  var page = 1;
-  var pageSize = 10;
-  var key = getSearch().key;
-
-  $(".lt_search input").val(key);
-  render();
   $(".lt_search button").on("click", function () {
     $(".sort li").removeClass("now").find("span").removeClass("fa-angle-up").addClass("fa-angle-down");
     key = $(".lt_search input").val();
-    render();
+    mui(".mui-scroll-wrapper").pullRefresh().pulldownLoading();
 
   })
-  $(".sort li[data-type]").on("click", function () {
+  $(".sort li[data-type]").on("tap", function () {
     // console.log(111);
     var $this = $(this);
     if (!$this.hasClass("now")) {
@@ -65,6 +72,6 @@ $(function () {
     } else {
       $(this).find("span").toggleClass(" fa-angle-down").toggleClass(" fa-angle-up");
     }
-    render();
+    mui(".mui-scroll-wrapper").pullRefresh().pulldownLoading();
   })
 })
