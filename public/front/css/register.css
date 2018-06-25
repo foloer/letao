@@ -1,0 +1,19 @@
+.regiseter_form{
+  padding: 10px;
+}
+.regiseter_form [name="vCode"]{
+   width: 65%;
+}
+.regiseter_form .getCode{
+  width: 30%;
+  height: 40px;
+  padding: 0;
+  line-height: 40px;
+}
+.regiseter_form .btn_register{
+  width: 100%;
+}
+.regiseter_form .disabled{
+  background-color: #ccc;
+  border: 1px solid #ccc;
+}
