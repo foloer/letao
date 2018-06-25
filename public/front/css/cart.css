@@ -1,0 +1,66 @@
+.lt_container{
+  padding-bottom: 85px;
+}
+.cart_left{
+  width: 60px;
+  float: left;
+  margin-right: 10px;
+}
+ .ck{
+position: absolute;
+bottom: 5px;
+left: 5px;
+}
+.cart_right{
+  overflow: hidden;
+}
+.cart_right .proName{
+  color: #333;
+  height: 42px;
+}
+.cart_right .price{
+  color: red;
+}
+.cart_right .oldPrice{
+  text-decoration: line-through;
+}
+.lt_money{
+  height: 30px;
+  background-color: #eee;
+  position: absolute;
+  bottom: 55px;
+  z-index: 999;
+  width: 100%;
+  padding-left:10px;
+  line-height: 30px; 
+  font-size: 12px;
+}
+.lt_money .mui-pull-left{
+ 
+  color: red;
+
+}
+.lt_money .mui-pull-right a{
+  display: block;
+  height: 30px;
+  background-color:red;
+  color: #fff;
+  padding: 0 10px;
+}
+.mui-table-cell {
+  display: block;
+}
+.proSize span{
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 12px;
+  background-color: #eee;
+  line-height: 30px;
+}
+.proSize span.now{
+  background-color: #069;
+}
+.proSize,
+.proNum {
+  text-align: left;
+}
