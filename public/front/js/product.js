@@ -28,7 +28,7 @@ $(function () {
     var size = $(".proSize span.now").text();
     var num = $(".mui-numbox-input").val();
     if (!size) {
-      mui.total("请选择尺码");
+      mui.toast("请选择尺码");
       return;
     }
     $.ajax({
